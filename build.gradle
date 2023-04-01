@@ -1,23 +1,18 @@
 plugins {
-    id 'java-library'
+  id 'java-library'
 }
 
 group = 'com.badlogic.gdx.sqlite'
-version = '1.0-SNAPSHOT'
 
 repositories {
-    mavenCentral()
+  mavenCentral()
 }
 
 dependencies {
-    api files('/libs/gdx.jar')
-    api files('/libs/gdx-sources.jar')
 
-    implementation 'org.ow2.asm:asm-tree:9.4'
-    testImplementation platform('org.junit:junit-bom:5.9.1')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
-}
+  api "com.badlogicgames.gdx:gdx:$gdxVersion"
+  implementation 'org.ow2.asm:asm-tree:9.4'
+  api files('libs/sqlite-jdbc-3.7.2.jar')
 
-test {
-    useJUnitPlatform()
+
 }
