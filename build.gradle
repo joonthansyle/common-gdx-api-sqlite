@@ -11,8 +11,8 @@ repositories {
 dependencies {
 
   api "com.badlogicgames.gdx:gdx:$gdxVersion"
-  implementation 'org.ow2.asm:asm-tree:9.4'
-  api files('libs/sqlite-jdbc-3.7.2.jar')
+  implementation "org.ow2.asm:asm-tree:$asmTree"
+  implementation "org.xerial:sqlite-jdbc:$sqliteJdbc"
 
-
+//  api files('libs/sqlite-jdbc-3.7.2.jar')
 }
