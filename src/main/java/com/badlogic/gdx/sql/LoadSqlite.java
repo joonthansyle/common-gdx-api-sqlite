@@ -59,10 +59,10 @@ public class LoadSqlite implements Closeable {
     @Deprecated
     public void execSQL(String sql){db.execSQL(sql);}
 
-    public DatabaseCursor getCursor(SqlBuilderSelect<?> builder) throws SQLiteGdxException, SQLException {
+    public DatabaseCursor getCursor(SqlBuilderSelect builder) throws SQLiteGdxException, SQLException {
         return db.getCursor(builder);
     }
-    public DatabaseCursor getCursor(DatabaseCursor cursor, SqlBuilderSelect<?> builder) throws SQLiteGdxException, SQLException{
+    public DatabaseCursor getCursor(DatabaseCursor cursor, SqlBuilderSelect builder) throws SQLiteGdxException, SQLException{
         return db.getCursor(cursor, builder);
     }
 

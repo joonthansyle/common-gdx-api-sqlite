@@ -65,8 +65,8 @@ public interface Database {
      * @throws SQLiteGdxException */
     @Deprecated
     public DatabaseCursor rawQuery (DatabaseCursor cursor, String sql) throws SQLiteGdxException;
-    public DatabaseCursor getCursor(SqlBuilderSelect<?> builder) throws SQLiteGdxException, SQLException;
-    public DatabaseCursor getCursor(DatabaseCursor cursor, SqlBuilderSelect<?> builder) throws SQLiteGdxException, SQLException;
+    public DatabaseCursor getCursor(SqlBuilderSelect builder) throws SQLiteGdxException, SQLException;
+    public DatabaseCursor getCursor(DatabaseCursor cursor, SqlBuilderSelect builder) throws SQLiteGdxException, SQLException;
     public OptionalLong insert(SqlBuilderInsert builder) throws SQLiteGdxException, SQLException;
     public OptionalInt delete(SqlBuilderDelete builder) throws SQLiteGdxException, SQLException;
     public OptionalInt update(SqlBuilderUpdate builder) throws SQLiteGdxException, SQLException;

@@ -19,19 +19,19 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
 
 import java.lang.reflect.InvocationTargetException;
 
-public class SqlBuilderSelectFactory<T> {
+public class SqlBuilderSelectFactory {
     private static final String desktopClassname = ConstantClassPath.sqlitePackageDesktop+".builder.BuildSqlSelect";
     private static final String androidClassname = ConstantClassPath.sqlitePackageAndroid+".builder.BuildSqlSelect";
-    private SqlBuilderSelect<T> sqlBuilderSelect = null;
+    private SqlBuilderSelect sqlBuilderSelect = null;
 
     /* ERROR CODES */
     private static final String EQ08 = "Error getting BuildSql class: %s: %s";
 
-    public SqlBuilderSelect<T> builderSelect(ResultMapper<T> resultMapper) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+    public SqlBuilderSelect builderSelect(ResultMapper resultMapper) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         switch (Gdx.app.getType()) {
             case Android:
                 try {
-                    sqlBuilderSelect = (SqlBuilderSelect<T>) Class.forName(androidClassname).getDeclaredConstructor(ResultMapper.class).newInstance(resultMapper);
+                    sqlBuilderSelect = (SqlBuilderSelect) Class.forName(androidClassname).getDeclaredConstructor(ResultMapper.class).newInstance(resultMapper);
                 } catch (Throwable ex) {
                     String errorMsg = String.format(EQ08, androidClassname, ex);
                     throw new GdxRuntimeException(errorMsg);
@@ -39,7 +39,7 @@ public class SqlBuilderSelectFactory<T> {
                 break;
             case Desktop:
                 try {
-                    sqlBuilderSelect = (SqlBuilderSelect<T>) Class.forName(desktopClassname).getDeclaredConstructor(ResultMapper.class).newInstance(resultMapper);
+                    sqlBuilderSelect = (SqlBuilderSelect) Class.forName(desktopClassname).getDeclaredConstructor(ResultMapper.class).newInstance(resultMapper);
                 } catch (Throwable ex) {
                     String errorMsg = String.format(EQ08, desktopClassname, ex);
                     throw new GdxRuntimeException(errorMsg);

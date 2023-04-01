@@ -23,39 +23,28 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static com.badlogic.gdx.sql.builder.Keywords.*;
-public abstract class SqlBuilderSelect<T> {
+public abstract class SqlBuilderSelect {
     protected String table;
     protected final List<String> columns = new ArrayList<>();
     protected final Map<Column, Object> clauses = new LinkedHashMap<>();
     protected final Map<String, OrderType> orders = new HashMap<>();
     protected final List<String> groupings = new ArrayList<>();
-    protected final ResultMapper<T> resultMapper;
+    protected final ResultMapper resultMapper;
 
     /**
      * Create a SelectBuilder with a custom {@link ResultMapper}
      *
      * @param resultMapper maps the expected output to a desired return type
      */
-    public SqlBuilderSelect(final ResultMapper<T> resultMapper) {
+    public SqlBuilderSelect(final ResultMapper resultMapper) {
         this.resultMapper = resultMapper;
-    }
-
-    /**
-     * Create a SelectBuilder that will try to map the expected result to the fields in a class.
-     * This uses reflection to find class fields that match column names. Columns that have no
-     * matching field are skipped.
-     *
-     * @param tClass the class of the desired output objects
-     */
-    public SqlBuilderSelect(final Class<T> tClass) {
-        this.resultMapper = new ClassResultMapper<>(tClass);
     }
 
     /**
      * @param table name of the table to pull data from
      * @return the builder this was invoked on
      */
-    public SqlBuilderSelect<T> table(final String table) {
+    public SqlBuilderSelect table(final String table) {
         this.table = table;
         return this;
     }
@@ -66,7 +55,7 @@ public abstract class SqlBuilderSelect<T> {
      * @param column a {@link Column} representing a column of the table in the db
      * @return the builder this was invoked on
      */
-    public SqlBuilderSelect<T> select(final Column column) {
+    public SqlBuilderSelect select(final Column column) {
         this.columns.add(column.getName());
         return this;
     }
@@ -78,7 +67,7 @@ public abstract class SqlBuilderSelect<T> {
      * @param value the desired value of the column. Can be null
      * @return the builder this was invoked on
      */
-    public SqlBuilderSelect<T> where(final Column column, final Object value) {
+    public SqlBuilderSelect where(final Column column, final Object value) {
         clauses.put(column, value);
         return this;
     }
@@ -89,7 +78,7 @@ public abstract class SqlBuilderSelect<T> {
      * @param column a {@link Column} representing a column of the table in the db
      * @return the builder this was invoked on
      */
-    public SqlBuilderSelect<T> groupBy(final Column column) {
+    public SqlBuilderSelect groupBy(final Column column) {
         groupings.add(column.getName());
         return this;
     }
@@ -101,7 +90,7 @@ public abstract class SqlBuilderSelect<T> {
      * @param orderType how to order the column. Can be null
      * @return the builder this was invoked on
      */
-    public SqlBuilderSelect<T> orderBy(final Column column, final OrderType orderType) {
+    public SqlBuilderSelect orderBy(final Column column, final OrderType orderType) {
         orders.put(column.getName(), orderType);
         return this;
     }

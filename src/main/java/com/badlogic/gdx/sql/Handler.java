@@ -171,10 +171,10 @@ public class Handler {
         return nextCursor;
     }
 
-    public DatabaseCursor getCursor(SqlBuilderSelect<?> builder) throws SQLiteGdxException, SQLException {
+    public DatabaseCursor getCursor(SqlBuilderSelect builder) throws SQLiteGdxException, SQLException {
         return db.getCursor(builder);
     }
-    public DatabaseCursor getCursor(DatabaseCursor cursor, SqlBuilderSelect<?> builder) throws SQLiteGdxException, SQLException{
+    public DatabaseCursor getCursor(DatabaseCursor cursor, SqlBuilderSelect builder) throws SQLiteGdxException, SQLException{
         return db.getCursor(cursor, builder);
     }
 
