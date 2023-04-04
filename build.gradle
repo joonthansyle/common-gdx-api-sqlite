@@ -8,21 +8,21 @@ repositories {
   mavenCentral()
 }
 ext{
-  // remove if used in the project
+  // remove if used in the project, declared this in your gradle.properties
   asmTree='9.5'
   sqliteJdbc='3.41.2.1'
 }
 
 
 dependencies {
-
-
   implementation "org.ow2.asm:asm-tree:$asmTree"
   implementation "org.xerial:sqlite-jdbc:$sqliteJdbc"
 
+// remove 2 lines if used in the project
   compileOnly files('libs/gdx.jar')
   compileOnly files('libs/gdx-sources.jar')
 
+//  use these in the project
 //  implementation "com.badlogicgames.gdx:gdx:$gdxVersion"
-//  api files('libs/sqlite-jdbc-3.7.2.jar')
+
 }
