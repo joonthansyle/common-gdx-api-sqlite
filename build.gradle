@@ -7,12 +7,22 @@ group = 'com.badlogic.gdx.sqlite'
 repositories {
   mavenCentral()
 }
+ext{
+  // remove if used in the project
+  asmTree='9.5'
+  sqliteJdbc='3.41.2.1'
+}
+
 
 dependencies {
 
-  api "com.badlogicgames.gdx:gdx:$gdxVersion"
+
   implementation "org.ow2.asm:asm-tree:$asmTree"
   implementation "org.xerial:sqlite-jdbc:$sqliteJdbc"
 
+  compileOnly files('libs/gdx.jar')
+  compileOnly files('libs/gdx-sources.jar')
+
+//  implementation "com.badlogicgames.gdx:gdx:$gdxVersion"
 //  api files('libs/sqlite-jdbc-3.7.2.jar')
 }
