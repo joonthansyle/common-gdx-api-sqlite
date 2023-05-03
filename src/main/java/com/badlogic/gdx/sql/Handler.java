@@ -12,7 +12,8 @@
  *           Unlike Preference, this should be created once
  *           getInstance to synchronized
  * 20230122  if instance not null return instance
- * 20230331  Added Method delegation getCursor, insert, update and delete
+ * 20230131  Added Method delegation getCursor, insert, update and delete
+ * 20230305  ANDROID LOCATION: /data/data/com.galaxy.red.hat.JLSystem/databases/<name>
  * =====================================================================================================================
  * INFO, ERRORS AND WARNINGS:
  * E520: Handler Singleton already constructed.
