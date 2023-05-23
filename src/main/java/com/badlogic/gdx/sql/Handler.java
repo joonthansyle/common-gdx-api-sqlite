@@ -1,3 +1,4 @@
+//@formatter:off
 /**<p>*********************************************************************************************************************
  * <h1>Handler</h1>
  * @since 20221218
@@ -14,12 +15,14 @@
  * 20230122  if instance not null return instance
  * 20230131  Added Method delegation getCursor, insert, update and delete
  * 20230305  ANDROID LOCATION: /data/data/com.galaxy.red.hat.JLSystem/databases/<name>
+ * 20230507  TODO: ERROR CODES for Other Exceptions for identification
  * =====================================================================================================================
  * INFO, ERRORS AND WARNINGS:
  * E520: Handler Singleton already constructed.
  * E521: Cannot create folder: %s for database: %s, default location is used
  * E522: Unable to Open or Create Database
  **********************************************************************************************************************</p>*/
+//@formatter:on
 package com.badlogic.gdx.sql;
 
 import com.badlogic.gdx.Gdx;
