@@ -21,6 +21,9 @@
  * E520: Handler Singleton already constructed.
  * E521: Cannot create folder: %s for database: %s, default location is used
  * E522: Unable to Open or Create Database
+ * E523: Unable to Start Connection
+ * E524: Error executing raw query that returns database cursor
+ * E525: Error executing exec sql
  **********************************************************************************************************************</p>*/
 //@formatter:on
 package com.badlogic.gdx.sql;
@@ -52,6 +55,9 @@ public class Handler {
     public final String E520 = "Handler Singleton already constructed.";
     private final String E521 = "Cannot create folder: %s for database: %s, default location is used";
     private final String E522 = "Unable to Open or Create Database";
+    private final String E523 = "Unable to Start Connection";
+    private final String E524 = "Error executing raw query that returns database cursor";
+    private final String E525 = "Error executing exec sql";
 
     /**
      * @param path             Windows path
@@ -111,14 +117,14 @@ public class Handler {
             db.setupDatabase();
             db.openOrCreateDatabase();
         } catch (SQLiteGdxException e) {
-            throw new Error(E522+" "+e);
+            Gdx.app.error(TAG, E523+" : "+e);
         }
     }
     public void openConnection(){
         try {
             db.openOrCreateDatabase();
         } catch (SQLiteGdxException e) {
-            Gdx.app.error(TAG, e.getMessage());
+            Gdx.app.error(TAG, E522+" : "+e);
         }
     }
     private String createDBName(String path, String dbFileName){
@@ -157,8 +163,7 @@ public class Handler {
         try {
             cursor = db.rawQuery(s);
         } catch (SQLiteGdxException e) {
-//            e.printStackTrace();
-            Gdx.app.error(TAG, e.getMessage());
+            Gdx.app.error(TAG, E524+" : "+e);
         }
         return cursor;
     }
@@ -169,8 +174,7 @@ public class Handler {
         try {
             nextCursor = db.rawQuery(cursor, s);
         } catch (SQLiteGdxException e) {
-//            e.printStackTrace();
-            Gdx.app.error(TAG, e.getMessage());
+            Gdx.app.error(TAG, E524+" : "+e);
         }
         return nextCursor;
     }
@@ -197,7 +201,7 @@ public class Handler {
         try {
             db.execSQL(sql);
         } catch (SQLiteGdxException e) {
-            Gdx.app.error(TAG, e.getMessage());
+            Gdx.app.error(TAG, E525+" : "+e);
         }
     }
 
@@ -208,9 +212,7 @@ public class Handler {
     public void close(){
         try {
             db.closeDatabase();
-        } catch (SQLiteGdxException e) {
-            Gdx.app.error(TAG, e.getMessage());
-        }
+        } catch (SQLiteGdxException ignored) {}
     }
 
     public String name(){return dbName;}
